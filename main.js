@@ -12,13 +12,13 @@ let timerStarted = false;
 let timerInterval;
 let solvedBlocks = 0; // Track how many blocks have been solved
 
-// Retrieve remaining time from localStorage or set it to 30 minutes (1800 seconds)
+// Retrieve remaining time from localStorage or set it to 30 seconds
 let timeRemaining = localStorage.getItem('timeRemaining') !== null 
     ? parseInt(localStorage.getItem('timeRemaining')) 
-    : 30 * 60; // 30 minutes in seconds
+    : 30*60; // 30 seconds
 
 if (isNaN(timeRemaining)) {
-    timeRemaining = 30 * 60; // Reset to 30 minutes if invalid value is retrieved
+    timeRemaining = 30*60; // Reset to 30 seconds if invalid value is retrieved
 }
 
 function askQuestion(block, index) {
@@ -93,9 +93,9 @@ function showScore() {
 function restartGame() {
     clearInterval(timerInterval); // Stop the current timer
     localStorage.removeItem('timeRemaining');
-    timeRemaining = 30 * 60; // Reset timer to 30 minutes
+    timeRemaining = 30; // Reset timer to 30 seconds
     solvedBlocks = 0; // Reset solved blocks count
-    document.getElementById('timer').innerText = '30:00'; // Reset the timer display
+    document.getElementById('timer').innerText = '00:30'; // Reset the timer display
     document.getElementById('scoreModal').style.display = 'none'; // Hide the score modal
     timerStarted = false; // Allow the timer to restart
     // Optionally reset the grid and other game state
@@ -104,9 +104,9 @@ function restartGame() {
 // Function to reset the timer manually
 function resetTimer() {
     clearInterval(timerInterval); // Stop the current timer
-    timeRemaining = 30 * 60; // Reset timer to 30 minutes
+    timeRemaining = 30; // Reset timer to 30 seconds
     localStorage.setItem('timeRemaining', timeRemaining); // Update localStorage
-    document.getElementById('timer').innerText = '30:00'; // Update the UI
+    document.getElementById('timer').innerText = '00:30'; // Update the UI
     startTimer(); // Restart the timer
     timerStarted = true; // Mark the timer as started
 }
